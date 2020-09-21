@@ -26,6 +26,14 @@ function App() {
     console.log(data);
   };
 
+  const getMovieByGenre = async (genreId) => {
+    genreId = document.getElementById("filterByGenre").value;
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setMovieList(data.results);
+  };
+
   const getMovieLatest = async (page) => {
     let url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey}&language=en-US&page=1`;
     let response = await fetch(url);
@@ -116,6 +124,25 @@ function App() {
             >
               Now Playing
             </button>
+            <select
+              id="filterByGenre"
+              onChange={() => {
+                getMovieByGenre();
+              }}
+            >
+              <option value="" disabled selected>
+                Filter By Genre
+              </option>
+              <option value="28">Action</option>
+              <option value="12">Adventure</option>
+              <option value="16">Animation</option>
+              <option value="35">Comedy</option>
+              <option value="80">Crime</option>
+              <option value="99">Documentary</option>
+              <option value="18">Drama</option>
+              <option value="10751">Family</option>
+              <option value="14">Fantasy</option>
+            </select>
           </div>
           <div className="pageOption">
             <select
