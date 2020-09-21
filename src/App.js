@@ -92,59 +92,64 @@ function App() {
         <img src=".././images/logooff3.png" style={{ height: "70px" }} alt="" />
       </div>
       <Banner film={movieLatest} />
-      <div id="selectBoard">
-        <div style={{ margin: "10px 0" }}>
-          <button
-            onClick={() => {
-              getMovie("top_rated", page);
-            }}
-          >
-            Top Rated
-          </button>
-          <button
-            onClick={() => {
-              getMovie("popular", page);
-            }}
-          >
-            Popular
-          </button>
-          <button
-            onClick={() => {
-              getMovie("now_playing", page);
-            }}
-          >
-            Now Playing
-          </button>
-        </div>
-        <div className="pageOption">
-          <select
-            id="ratePopular"
-            onChange={() => {
-              sortByPopular();
-            }}
-          >
-            <option value="" disabled selected>
-              Sort By Popularity
-            </option>
-            <option value="high">Highest first</option>
-            <option value="low">Lowest first</option>
-          </select>
-          <select
-            id="rating"
-            onChange={() => {
-              sortByRating();
-            }}
-          >
-            <option value="" disabled selected>
-              Sort By Rating
-            </option>
-            <option value="high">Highest first</option>
-            <option value="low">Lowest first</option>
-          </select>
-        </div>
-        <div className="searchSection">
-          <input onChange={(event) => (keyword = event.target.value)} />
-          <button onClick={() => searchByKeyword(keyword)}>Search</button>
+      <div className="boxSelectBoard">
+        <div id="selectBoard">
+          <div style={{ margin: "10px 0" }}>
+            <button
+              onClick={() => {
+                getMovie("top_rated", page);
+              }}
+            >
+              Top Rated
+            </button>
+            <button
+              onClick={() => {
+                getMovie("popular", page);
+              }}
+            >
+              Popular
+            </button>
+            <button
+              onClick={() => {
+                getMovie("now_playing", page);
+              }}
+            >
+              Now Playing
+            </button>
+          </div>
+          <div className="pageOption">
+            <select
+              id="ratePopular"
+              onChange={() => {
+                sortByPopular();
+              }}
+            >
+              <option value="" disabled selected>
+                Sort By Popularity
+              </option>
+              <option value="high">Highest first</option>
+              <option value="low">Lowest first</option>
+            </select>
+            <select
+              id="rating"
+              onChange={() => {
+                sortByRating();
+              }}
+            >
+              <option value="" disabled selected>
+                Sort By Rating
+              </option>
+              <option value="high">Highest first</option>
+              <option value="low">Lowest first</option>
+            </select>
+          </div>
+          <div className="searchSection">
+            <input
+              onChange={(event) => (keyword = event.target.value)}
+              placeholder="Search movie"
+            />
+            <button onClick={() => searchByKeyword(keyword)}>Search</button>
+          </div>
         </div>
       </div>
       <div className="changePage">
