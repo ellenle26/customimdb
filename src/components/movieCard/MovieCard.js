@@ -5,10 +5,20 @@ import {
   StarFilled,
   VideoCameraOutlined,
 } from "@ant-design/icons";
+import { Modal } from "react-bootstrap";
+import YouTube from "@u-wave/react-youtube";
 import Badge from "react-bootstrap/Badge";
 import "./MovieCard.css";
 
-const MovieCard = ({ movie, genreList }) => {
+const MovieCard = ({
+  movie,
+  genreList,
+  show,
+  handleShow,
+  handleClose,
+  getMovieTrailer,
+  movieTrailer,
+}) => {
   if (!movie) {
     return (
       <div style={{ textAlign: "center", margin: "30px 0" }}>
@@ -17,8 +27,7 @@ const MovieCard = ({ movie, genreList }) => {
     );
   }
   if (genreList.length < 1 || genreList == null) {
-    console.log("herererere");
-    return <div>afsfsafasf</div>;
+    return <div></div>;
   }
   return (
     <div className="flip-card">
@@ -40,7 +49,7 @@ const MovieCard = ({ movie, genreList }) => {
             {movie.genre_ids.map((id) => {
               return (
                 <Badge variant="light" style={{ marginRight: "3px" }}>
-                  {genreList.find((item) => item.id == id).name}
+                  {genreList.find((item) => item.id === id).name}
                 </Badge>
               );
             })}
@@ -53,8 +62,23 @@ const MovieCard = ({ movie, genreList }) => {
             >
               <InfoCircleOutlined style={{ fontSize: "25px" }} />
             </a>
-            &nbsp; &nbsp;
-            <PlayCircleOutlined style={{ fontSize: "25px" }} />
+            <PlayCircleOutlined
+              style={{ fontSize: "25px" }}
+              onClick={() => {
+                handleShow();
+                getMovieTrailer(movie.id);
+              }}
+            />
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Body>
+                <YouTube
+                  video={movieTrailer}
+                  width="100%"
+                  height="100%"
+                  autoplay
+                />
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
       </div>
