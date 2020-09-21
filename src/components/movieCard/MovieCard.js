@@ -45,7 +45,7 @@ const MovieCard = ({
             <StarFilled style={{ color: "#db7100" }} /> &nbsp;
             <span style={{ height: "16px" }}>{movie.vote_average}</span>
           </div>
-          <div>
+          <div className="genre">
             {movie.genre_ids.map((id) => {
               return (
                 <Badge variant="light" style={{ marginRight: "3px" }}>
@@ -61,7 +61,8 @@ const MovieCard = ({
               target="_"
             >
               <InfoCircleOutlined style={{ fontSize: "25px" }} />
-            </a>
+            </a>{" "}
+            &nbsp;
             <PlayCircleOutlined
               style={{ fontSize: "25px" }}
               onClick={() => {
@@ -69,14 +70,9 @@ const MovieCard = ({
                 getMovieTrailer(movie.id);
               }}
             />
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Body>
-                <YouTube
-                  video={movieTrailer}
-                  width="100%"
-                  height="100%"
-                  autoplay
-                />
+            <Modal show={show} onHide={handleClose} centered size="lg">
+              <Modal.Body className="trailer">
+                <YouTube video={movieTrailer} width="800px" height="600px" />
               </Modal.Body>
             </Modal>
           </div>

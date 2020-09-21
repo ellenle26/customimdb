@@ -60,7 +60,7 @@
 
 .movieTitle {
   width: 150px;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
 }
@@ -84,4 +84,26 @@
 
 a {
   color: #3e271f !important;
+}
+
+.genre {
+  overflow: auto;
+  height: 23px;
+}
+.genre::-webkit-scrollbar {
+  display: none;
+}
+
+.trailer {
+  background-color: #f0c8a4;
+  width: 850px;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div .fade.modal.show {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
