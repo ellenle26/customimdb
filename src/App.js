@@ -14,9 +14,13 @@ let apikey = process.env.REACT_APP_APIKEY;
 function App() {
   let [movieList, setMovieList] = useState([]);
   let [movieLatest, setMovieLatest] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   let keyword = "";
   let type = "top_rated";
   let [page, setPage] = useState(1);
+  let [movieTrailer, setMovieTrailer] = useState("");
 
   const getMovie = async (type, page) => {
     let url = `https://api.themoviedb.org/3/movie/${type}?api_key=${apikey}&language=en-US&page=${page}`;
@@ -24,6 +28,13 @@ function App() {
     let data = await response.json();
     setMovieList(data.results);
     console.log(data);
+  };
+
+  const getMovieTrailer = async (movieId) => {
+    let url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apikey}&language=en-US`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setMovieTrailer(data.results[0].key);
   };
 
   const getMovieByGenre = async (genreId) => {
@@ -199,7 +210,14 @@ function App() {
           Next
         </div>
       </div>
-      <MovieList list={movieList} />
+      <MovieList
+        list={movieList}
+        show={show}
+        handleClose={handleClose}
+        handleShow={handleShow}
+        getMovieTrailer={getMovieTrailer}
+        movieTrailer={movieTrailer}
+      />
       <div style={{ textAlign: "center" }}>
         <a href="#selectBoard">
           {" "}
