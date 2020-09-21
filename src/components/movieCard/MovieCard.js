@@ -6,8 +6,17 @@ import {
   StarFilled,
   VideoCameraOutlined,
 } from "@ant-design/icons";
+import { Modal } from "react-bootstrap";
+import YouTube from "@u-wave/react-youtube";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({
+  movie,
+  show,
+  handleShow,
+  handleClose,
+  getMovieTrailer,
+  movieTrailer,
+}) => {
   if (!movie) {
     return (
       <div style={{ textAlign: "center", margin: "30px 0" }}>
@@ -40,7 +49,24 @@ const MovieCard = ({ movie }) => {
               <InfoCircleOutlined style={{ fontSize: "25px" }} />
             </a>
             &nbsp; &nbsp;
-            <PlayCircleOutlined style={{ fontSize: "25px" }} />
+            <a
+              onClick={() => {
+                handleShow();
+                getMovieTrailer(movie.id);
+              }}
+            >
+              <PlayCircleOutlined style={{ fontSize: "25px" }} />
+            </a>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Body>
+                <YouTube
+                  video={movieTrailer}
+                  width="100%"
+                  height="100%"
+                  autoplay
+                />
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
       </div>
