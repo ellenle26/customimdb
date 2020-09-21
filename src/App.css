@@ -92,3 +92,12 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
+
+.pageNumber a {
+  font-size: larger;
+  font-weight: bolder;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

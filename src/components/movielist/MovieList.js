@@ -3,7 +3,7 @@ import MovieCard from "../movieCard/MovieCard.js";
 import { VideoCameraOutlined } from "@ant-design/icons";
 import "./MovieList.css";
 
-const MovieList = ({ list }) => {
+const MovieList = ({ list,genreList }) => {
   console.log(list);
   if (!list) {
     return (
@@ -15,7 +15,7 @@ const MovieList = ({ list }) => {
   return (
     <div className="movieList">
       {list.map((item) => {
-        return <MovieCard movie={item} />;
+        return <MovieCard movie={item} genreList={genreList} />;
       })}
     </div>
   );
