@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import Pagination from "react-js-pagination";
 import FilterRange from "./components/filterRange/FilterRange.js";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 let apikey = process.env.REACT_APP_APIKEY;
 
