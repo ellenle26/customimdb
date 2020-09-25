@@ -63,13 +63,15 @@ const MovieCard = ({
               <InfoCircleOutlined style={{ fontSize: "25px" }} />
             </a>{" "}
             &nbsp;
-            <PlayCircleOutlined
-              style={{ fontSize: "25px" }}
-              onClick={() => {
-                handleShow();
-                getMovieTrailer(movie.id);
-              }}
-            />
+            <a href="#">
+              <PlayCircleOutlined
+                style={{ fontSize: "25px" }}
+                onClick={() => {
+                  handleShow();
+                  getMovieTrailer(movie.id);
+                }}
+              />
+            </a>
             <Modal show={show} onHide={handleClose} centered size="lg">
               <Modal.Body className="trailer">
                 <YouTube video={movieTrailer} width="800px" height="600px" />
