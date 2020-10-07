@@ -33,7 +33,7 @@ const Trailer = () => {
           src={`https://www.youtube.com/embed/${movieTrailer}`}
         ></iframe>
       )}
-      <button onClick={() => goBack()}>Go back</button>
+      <p onClick={() => goBack()}>Go back</p>
     </div>
   );
 };
