@@ -84,6 +84,7 @@
 
 a {
   color: #3e271f !important;
+  outline: none;
 }
 
 .genre {
@@ -95,10 +96,10 @@ a {
 }
 
 .trailer {
-  background-color: #f0c8a4;
-  width: 850px;
-  height: 650px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

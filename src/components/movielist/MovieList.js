@@ -5,7 +5,6 @@ import "./MovieList.css";
 
 const MovieList = ({
   list,
-  show,
   genreList,
   handleShow,
   handleClose,
@@ -22,17 +21,7 @@ const MovieList = ({
   return (
     <div className="movieList">
       {list.map((item) => {
-        return (
-          <MovieCard
-            movie={item}
-            show={show}
-            genreList={genreList}
-            handleClose={handleClose}
-            handleShow={handleShow}
-            getMovieTrailer={getMovieTrailer}
-            movieTrailer={movieTrailer}
-          />
-        );
+        return <MovieCard movie={item} genreList={genreList} />;
       })}
     </div>
   );

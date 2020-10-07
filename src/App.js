@@ -26,11 +26,6 @@ function App() {
   let [totalResult, setTotalResult] = useState(0);
   let [inputRange, setInputRange] = useState({ min: 0, max: 10 });
   let [genreList, setGenreList] = useState([]);
-  let [movieTrailer, setMovieTrailer] = useState("");
-
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const getMovie = async (type, page) => {
     let url = `https://api.themoviedb.org/3/movie/${type}?api_key=${apikey}&language=en-US&page=${page}`;
@@ -40,13 +35,6 @@ function App() {
     setMovieList(data.results);
     setTotalResult(data.total_results);
     console.log(data);
-  };
-
-  const getMovieTrailer = async (movieId) => {
-    let url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apikey}&language=en-US`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setMovieTrailer(data.results[0].key);
   };
 
   const getMovieByGenre = async (genreId) => {
@@ -267,15 +255,7 @@ function App() {
           Next
         </div>
       </div> */}
-      <MovieList
-        list={movieList}
-        show={show}
-        genreList={genreList}
-        handleClose={handleClose}
-        handleShow={handleShow}
-        getMovieTrailer={getMovieTrailer}
-        movieTrailer={movieTrailer}
-      />
+      <MovieList list={movieList} genreList={genreList} />
       <div style={{ textAlign: "center", padding: "20px 0 30px 0" }}>
         <a href="#selectBoard">
           {" "}

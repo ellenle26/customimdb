@@ -1,24 +1,21 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import {
   InfoCircleOutlined,
   PlayCircleOutlined,
   StarFilled,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Modal } from "react-bootstrap";
-import YouTube from "@u-wave/react-youtube";
 import Badge from "react-bootstrap/Badge";
 import "./MovieCard.css";
 
-const MovieCard = ({
-  movie,
-  genreList,
-  show,
-  handleShow,
-  handleClose,
-  getMovieTrailer,
-  movieTrailer,
-}) => {
+const MovieCard = ({ movie, genreList, getMovieTrailer, movieTrailer }) => {
+  const history = useHistory();
+
+  const gotoTrailer = (index) => {
+    history.push(`/trailer/${index}`);
+  };
+
   if (!movie) {
     return (
       <div style={{ textAlign: "center", margin: "30px 0" }}>
@@ -31,6 +28,7 @@ const MovieCard = ({
   }
   return (
     <div className="flip-card">
+      {console.log("nenene", movie)}
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <img
@@ -56,27 +54,16 @@ const MovieCard = ({
           </div>
           <div className="movieDes">{movie.overview}</div>
           <div>
-            <a
-              href={`${`https://www.themoviedb.org/movie/${movie.id}`}`}
-              target="_"
-            >
+            <a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_">
               <InfoCircleOutlined style={{ fontSize: "25px" }} />
-            </a>{" "}
-            &nbsp;
-            <a href="#">
-              <PlayCircleOutlined
-                style={{ fontSize: "25px" }}
-                onClick={() => {
-                  handleShow();
-                  getMovieTrailer(movie.id);
-                }}
-              />
             </a>
-            <Modal show={show} onHide={handleClose} centered size="lg">
-              <Modal.Body className="trailer">
-                <YouTube video={movieTrailer} width="800px" height="600px" />
-              </Modal.Body>
-            </Modal>
+            &nbsp;
+            <PlayCircleOutlined
+              style={{ fontSize: "25px" }}
+              onClick={() => {
+                gotoTrailer(movie.id);
+              }}
+            />
           </div>
         </div>
       </div>
